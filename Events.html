@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+      label{
+        color: black;
+      }
+      #searchingdiv{
+      
+      margin-bottom: 40px;
+      }
+      #searchingdiv >div{
+        background-color:#edf0f2;
+      }
 .secondorycolor{
   background-color: #6c757d
 }
@@ -41,10 +53,10 @@ width: 1185px;
 
     <nav class="navbar tablebackground">
         <img src="https://png.pngtree.com/element_our/md/20180614/md_5b21fc32a3146.jpg"  width="50px" height="50px">
-            <a class="navbar-brand" href="home.html">Home</a>
-        <a class="navbar-brand" href="Events.html">Events</a>
-        <a class="navbar-brand" href="wishes.html">Wishes</a>
-        <a class="navbar-brand" href="About.html">About</a>
+        <a class="navbar-brand" href="window.location.href='home.html';">Home</a>
+        <a class="navbar-brand" href="window.location.href='Events.html;">Events</a>
+        <a class="navbar-brand" href="window.location.href='wishes.html';">Wishes</a>
+        <a class="navbar-brand" href="window.location.href='About.html';">About</a>
         <a class="navbar-brand" ></a>
         <a class="navbar-brand" ></a>
         <a class="navbar-brand" ></a>
@@ -68,7 +80,9 @@ width: 1185px;
     </nav>
             <div class="container-fluid">
                 <div class="row mt-5">
+                    <div id="searchingdiv">
                   <div class="col">
+                    
                       <table class="table tablebackground" id="searching">
                           <thead>
                             <tr>
@@ -111,6 +125,7 @@ width: 1185px;
                         </table>
                         <button type="button" class="btn btn-secondary">Search</button>
                   </div>
+                </div>
                   <div class="col-md">
                       <div>
                     <table class="table tablebackground tableStyle" id="result">
@@ -188,7 +203,160 @@ width: 1185px;
 let today = new Date().toISOString().substr(0, 10);
 document.querySelector("#fromDate").value = today;
 document.querySelector("#toDate").value = today;
+(()=>{
+  if($(window).width()<1450){
+  if($(window).width()<930){medq2();}
+  else{
+  medq();
+  }
+}
+else{
+  medq1();
+}
+})();
+
+  $( window ).resize(function() {
+console.log($(window).width());
+if($(window).width()<1450){
+  if($(window).width()<930){medq2();}
+  else{
+  medq();
+  }
+}
+else{
+  medq1();
+}
+});
+function medq(){
+  s=document.getElementById('searchingdiv');
+s.innerHTML=` <div class="row">
+<div class="col">
+    <label>Searching for event</label>
+</div>
+<div class="col">
+        <label>Event ID: </label></td>
+        <input type="text" style="width:100px">
+</div>
+
+        <div class="col">
+                <label >OR FILTER</label>
+            </div>
+            <div class="col">
+                   <label>Ctagory: </label>
+                       <select name="Catagory" style="width:100px">
+                          <option value="New Born">New Born</option>
+                          <option value="Wedding">Wedding</option>
+                          <option value="Birthday">Birthday</option>
+                          <option value="Party">Party</option>
+                        </select> 
+            </div>
+            <div class="col">
+                    <label>From Date: </label></td>
+                    <input id="fromDate" type="date" style="width:100px">
+            </div>
+            <div class="col">
+                    <label>To Date: </label></td>
+                    <input id="toDate" type="date" style="width:100px">
+            </div>
+            <div class="col">
+                    <label>Where: </label></td>
+                    <input type="text" style="width:100px">
+            </div>
+            <div class="col">
+                    <button type="button" class="btn btn-secondary">Search</button>
+            </div>
+</div>`
+}
+function medq1(){
+  s=document.getElementById('searchingdiv');
+s.innerHTML=`  <div class="col">
+                    
+                    <table class="table tablebackground" id="searching">
+                        <thead>
+                          <tr>
+                            <th colspan="2" scope="col">Searching for event</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><label>Event ID: </label></td>
+                            <td><input type="text" style="width:100px"></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2">OR FILTER</td>
+                            
+                      </tr>
+                          <tr>
+                              <td><label >Ctagory: </label></td>
+                              <td>       <select name="Catagory" style="width:100px">
+                                    <option value="New Born">New Born</option>
+                                    <option value="Wedding">Wedding</option>
+                                    <option value="Birthday">Birthday</option>
+                                    <option value="Party">Party</option>
+                                  </select> </td>
+                          </tr>
+                          <tr>
+                              <td><label>From Date: </label></td>
+                              <td> <input id="fromDate" type="date" style="width:100px"></td>
+        
+                            </tr>
+                            <tr>
+                                <td><label>To Date: </label></td>
+                                <td><input id="toDate" type="date" style="width:100px"></td>
+                          </tr>
+                          <tr>
+                              <td><label>Where: </label></td>
+                              <td> <input type="text" style="width:100px"></td>
+                        </tr>
+                        </tbody>
+                      </table>
+                      <button type="button" class="btn btn-secondary">Search</button>
+                </div>`;
+}
+function medq2(){
+  s=document.getElementById('searchingdiv');
+s.innerHTML=` <div class="row" style="margin-bottom: 10px">     
+<div class="col">
+    <label>Searching for event</label>
+</div>
+<div class="col">
+        <label>Event ID: </label></td>
+        <input type="text" style="width:100px">
+</div>
+    </div>
+<div class="row" >
+        <div class="col">
+                <label >OR FILTER</label>
+            </div>
+            <div class="col">
+                   <label>Ctagory: </label>
+                       <select name="Catagory" style="width:100px">
+                          <option value="New Born">New Born</option>
+                          <option value="Wedding">Wedding</option>
+                          <option value="Birthday">Birthday</option>
+                          <option value="Party">Party</option>
+                        </select> 
+            </div>
+            <div class="col">
+                    <label>From Date: </label></td>
+                    <input id="fromDate" type="date" style="width:100px">
+            </div>
+            <div class="col">
+                    <label>To Date: </label></td>
+                    <input id="toDate" type="date" style="width:100px">
+            </div>
+            <div class="col">
+                    <label>Where: </label></td>
+                    <input type="text" style="width:100px">
+            </div>
+            <div class="col">
+                    <button type="button" class="btn btn-secondary">Search</button>
+            </div>
+</div>`
+}
 </script>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
